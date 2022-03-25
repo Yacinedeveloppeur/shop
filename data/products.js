@@ -1,4 +1,4 @@
-const products = [
+const productsData = [
   //first_categorie
   {
     id: "1",
@@ -7,6 +7,7 @@ const products = [
     description: "Le bleu d'auvergne fort de caractère",
     category: "first_categorie",
     price: 3,
+    quantity: 0,
   },
   {
     id: "2",
@@ -15,6 +16,7 @@ const products = [
     description: "Fromage doux et moelleux qui plaira à tout le monde.",
     category: "first_categorie",
     price: 3,
+    quantity: 0,
   },
   {
     id: "3",
@@ -23,6 +25,7 @@ const products = [
     description: "Fromage savoureux pour les gourmands.",
     category: "first_categorie",
     price: 5,
+    quantity: 0,
   },
   {
     id: "4",
@@ -31,6 +34,7 @@ const products = [
     description: "Le Traditionnel emmental pour toute la famille.",
     category: "first_categorie",
     price: 4,
+    quantity: 0,
   },
   //End first_categorie
 
@@ -42,6 +46,7 @@ const products = [
     description: "Bacon croustillant",
     category: "second_categorie",
     price: 4,
+    quantity: 0,
   },
   {
     id: "6",
@@ -50,6 +55,7 @@ const products = [
     description: "Côtes de boeuf savoureuses",
     category: "second_categorie",
     price: 4,
+    quantity: 0,
   },
   {
     id: "7",
@@ -58,6 +64,7 @@ const products = [
     description: "Poulet de Brest.",
     category: "second_categorie",
     price: 5,
+    quantity: 0,
   },
   {
     id: "8",
@@ -66,6 +73,7 @@ const products = [
     description: "Jambon de Parme",
     category: "second_categorie",
     price: 5,
+    quantity: 0,
   },
   //En second_categorie
 
@@ -77,6 +85,7 @@ const products = [
     description: "Tendre et croquant à la fois",
     category: "third_categorie",
     price: 3,
+    quantity: 0,
   },
   {
     id: "10",
@@ -85,6 +94,7 @@ const products = [
     description: "Champigons de paris.",
     category: "third_categorie",
     price: 5,
+    quantity: 0,
   },
   {
     id: "11",
@@ -93,6 +103,7 @@ const products = [
     description: "En frite, boullie ou en purée.",
     category: "third_categorie",
     price: 3,
+    quantity: 0,
   },
   {
     id: "12",
@@ -101,6 +112,7 @@ const products = [
     description: "Tomates juteuses.",
     category: "third_categorie",
     price: 4,
+    quantity: 0,
   },
   //End third_categorie
 
@@ -112,6 +124,7 @@ const products = [
     description: "Pomme à croquer",
     category: "fourth_categorie",
     price: 6,
+    quantity: 0,
   },
   {
     id: "14",
@@ -120,6 +133,7 @@ const products = [
     description: "Pêche douce et juteuse",
     category: "fourth_categorie",
     price: 4,
+    quantity: 0,
   },
   {
     id: "15",
@@ -128,6 +142,7 @@ const products = [
     description: "Poire sucrée à souhait.",
     category: "fourth_categorie",
     price: 5,
+    quantity: 0,
   },
   {
     id: "16",
@@ -136,7 +151,8 @@ const products = [
     description: "Fraise pour les gourmands",
     category: "fourth_categorie",
     price: 6,
+    quantity: 0,
   },
 ];
 
-export default products;
+export default productsData;

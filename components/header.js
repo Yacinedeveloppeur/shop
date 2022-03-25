@@ -1,8 +1,16 @@
 import Link from "next/link";
 import Head from "next/head";
-import { useRouter } from "next/router";
 
-export default function Header({ titlePage }) {
+import { useRouter } from "next/router";
+import { connect } from "react-redux";
+
+const mapStateToProps = (state) => {
+  return {
+    total: state.total,
+  };
+};
+
+export default connect(mapStateToProps)(function Header({ titlePage, total }) {
   const router = useRouter();
   return (
     <>
@@ -40,15 +48,17 @@ export default function Header({ titlePage }) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/cart">
+                  <Link href="/cart-page">
                     <a
                       className={
-                        router.pathname == "/cart"
+                        router.pathname == "/cart-page"
                           ? "nav-link active"
                           : "nav-link"
                       }
                     >
-                      Panier
+                      <div className="bg-success px-4">
+                        Pannier : {total} € HT
+                      </div>
                     </a>
                   </Link>
                 </li>
@@ -70,4 +80,4 @@ export default function Header({ titlePage }) {
       </header>
     </>
   );
-}
+});

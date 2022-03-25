@@ -1,23 +1,58 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { connect } from "react-redux";
 
-export default function Product({ image, title, description, price }) {
-  const [countProducts, setcountProducts] = useState(0);
+//Connect props products to global state
+const mapStateToProps = (state) => {
+  return {
+    products: state.products,
+    total: state.total,
+  };
+};
 
-  function addProduct() {
-    setcountProducts(countProducts + 1);
-  }
+export default connect(mapStateToProps)(function Product({
+  image,
+  title,
+  description,
+  price,
+  dispatch,
+  id,
+  products,
+}) {
+  const [quantity, setQuantity] = useState(0);
+
   function removeProduct() {
-    if (countProducts > 0) {
-      setcountProducts(countProducts - 1);
+    if (quantity > 0) {
+      setQuantity(quantity - 1);
+      const action = {
+        type: "REMOVE_PRODUCT",
+        value: { id, title, price, quantity },
+      };
+      dispatch(action);
     }
+  }
+  console.log(products);
+  function addProduct() {
+    setQuantity(quantity + 1);
+    const action = {
+      type: "ADD_PRODUCT",
+      value: {
+        id: Math.floor((1 + Math.random()) * 0x10000)
+          .toString(16)
+          .substring(1),
+        title,
+        price,
+        quantity,
+      },
+    };
+    dispatch(action);
   }
 
   return (
     <div className="col">
       <div className="card shadow-sm">
         <Image
-          class="card-img-top"
+          className="card-img-top"
           src={image}
           alt={title}
           height={190}
@@ -49,18 +84,22 @@ export default function Product({ image, title, description, price }) {
             </div>
 
             <div className="d-flex align-items-center ">
-              <span className="me-3">{countProducts}</span>
               <Image
-                class="card-img-top"
+                className="card-img-top"
                 src="/images/cart.png"
                 alt={title}
                 height={40}
                 width={40}
               />
+              <span
+                className={quantity > 0 ? "mx-3 px-2 bg-warning" : "mx-3 px-2"}
+              >
+                {quantity}
+              </span>
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-}
+});
