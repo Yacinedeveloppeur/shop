@@ -15,10 +15,22 @@ export default connect(mapStateToProps)(function Header({ titlePage, total }) {
   return (
     <>
       <Head>
+        <meta name="og:title" content="boutique sous redux, next js" />
         <title>{titlePage}</title> <link rel="icon" href="/favicon.ico" />{" "}
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossOrigin="anonymous"
+          referrerpolicy="no-referrer"
+        />
+        <meta
+          name="description"
+          content="Simple boutique développée avec redux et next js"
+        />
       </Head>
       <header>
-        <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <nav className="navbar navbar-expand-md navbar-dark  bg-dark">
           <div className="container-fluid">
             <Link href="/">
               <a className="nav-link text-light">Ma boutique</a>
@@ -48,19 +60,12 @@ export default connect(mapStateToProps)(function Header({ titlePage, total }) {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link href="/cart-page">
-                    <a
-                      className={
-                        router.pathname == "/cart-page"
-                          ? "nav-link active"
-                          : "nav-link"
-                      }
-                    >
-                      <div className="bg-success px-4">
-                        Pannier : {total} € HT
-                      </div>
-                    </a>
-                  </Link>
+                  <a href="#cart" className="nav-link">
+                    <div className="bg-primary px-4">
+                      Pannier : {total} € HT{" "}
+                      <i className="fa-solid fa-cart-shopping"></i>
+                    </div>
+                  </a>
                 </li>
               </ul>
               <form className="d-flex">

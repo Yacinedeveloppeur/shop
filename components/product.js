@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { connect } from "react-redux";
+import cardStyles from "../styles/card.module.css";
 
 //Connect props products to global state
 const mapStateToProps = (state) => {
@@ -17,21 +18,20 @@ export default connect(mapStateToProps)(function Product({
   price,
   dispatch,
   id,
-  products,
 }) {
   const [quantity, setQuantity] = useState(0);
 
   function removeProduct() {
+    const action = {
+      type: "REMOVE_PRODUCT",
+      value: { id, title, price },
+    };
     if (quantity > 0) {
       setQuantity(quantity - 1);
-      const action = {
-        type: "REMOVE_PRODUCT",
-        value: { id, title, price, quantity },
-      };
-      dispatch(action);
     }
+    dispatch(action);
   }
-  console.log(products);
+
   function addProduct() {
     setQuantity(quantity + 1);
     const action = {
@@ -42,7 +42,6 @@ export default connect(mapStateToProps)(function Product({
           .substring(1),
         title,
         price,
-        quantity,
       },
     };
     dispatch(action);
@@ -51,13 +50,15 @@ export default connect(mapStateToProps)(function Product({
   return (
     <div className="col">
       <div className="card shadow-sm">
-        <Image
-          className="card-img-top"
-          src={image}
-          alt={title}
-          height={190}
-          width={362}
-        />
+        <div className={cardStyles.cardImg}>
+          <Image
+            className="card-img-top"
+            src={image}
+            alt={title}
+            height={190}
+            width={362}
+          />
+        </div>
 
         <div className="card-body">
           <h5 className="card-title">{title}</h5>
@@ -77,22 +78,29 @@ export default connect(mapStateToProps)(function Product({
               <button
                 type="button"
                 className="btn btn-sm btn-outline-danger"
-                onClick={removeProduct}
+                onClick={() => {
+                  removeProduct();
+                }}
               >
                 -
               </button>
             </div>
-
             <div className="d-flex align-items-center ">
-              <Image
-                className="card-img-top"
-                src="/images/cart.png"
-                alt={title}
-                height={40}
-                width={40}
-              />
+              <a href="#cart">
+                <Image
+                  className="card-img-top"
+                  src="/images/cart.png"
+                  alt={title}
+                  height={40}
+                  width={40}
+                />
+              </a>
               <span
-                className={quantity > 0 ? "mx-3 px-2 bg-warning" : "mx-3 px-2"}
+                className={
+                  quantity > 0
+                    ? "mx-3 px-2 bg-warning" + " " + title
+                    : "mx-3 px-2" + " " + title
+                }
               >
                 {quantity}
               </span>

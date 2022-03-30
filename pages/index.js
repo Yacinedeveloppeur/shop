@@ -3,9 +3,9 @@ import productsData from "../data/products";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
+import Cart from "../components/cart";
 
 import { connect } from "react-redux";
-import { useState } from "react";
 
 //Connect props products to global state
 const mapStateToProps = (state) => {
@@ -16,8 +16,6 @@ const mapStateToProps = (state) => {
 };
 
 export default connect(mapStateToProps)(function Home() {
-  const [quantity, setQuantity] = useState(0);
-
   const displayProducts = productsData.map((product) => (
     <Product
       key={product.id}
@@ -32,9 +30,16 @@ export default connect(mapStateToProps)(function Home() {
   return (
     <Layout>
       <Header titlePage="Boutique" />
-      <div className="container">
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
-          {displayProducts}
+      <div className="container main">
+        <div className="row">
+          <div className="col-md-10">
+            <div className="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+              {displayProducts}
+            </div>
+          </div>
+          <div className="col-md-2" id="cart">
+            <Cart />
+          </div>
         </div>
       </div>
       <Footer />
