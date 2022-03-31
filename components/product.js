@@ -80,7 +80,7 @@ export default connect(mapStateToProps)(function Product({
               </button>
             </div>
             <div className="d-flex align-items-center ">
-              <Link href={`/produits/${id}`}>
+              <Link href={"/produits/" + id}>
                 <a className="nav-link">plus d'infos</a>
               </Link>
             </div>
