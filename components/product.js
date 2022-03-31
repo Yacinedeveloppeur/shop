@@ -81,7 +81,7 @@ export default connect(mapStateToProps)(function Product({
             </div>
             <div className="d-flex align-items-center ">
               <Link href={"/produits/" + id}>
-                <a className="nav-link">plus d'infos</a>
+                <a className="nav-link">plus de détails</a>
               </Link>
             </div>
           </div>
