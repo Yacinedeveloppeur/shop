@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { useState } from "react";
+import Link from "next/link";
 import { connect } from "react-redux";
 import cardStyles from "../styles/card.module.css";
 
@@ -19,21 +19,15 @@ export default connect(mapStateToProps)(function Product({
   dispatch,
   id,
 }) {
-  const [quantity, setQuantity] = useState(0);
-
   function removeProduct() {
     const action = {
       type: "REMOVE_PRODUCT",
       value: { id, title, price },
     };
-    if (quantity > 0) {
-      setQuantity(quantity - 1);
-    }
     dispatch(action);
   }
 
   function addProduct() {
-    setQuantity(quantity + 1);
     const action = {
       type: "ADD_PRODUCT",
       value: {
@@ -64,7 +58,7 @@ export default connect(mapStateToProps)(function Product({
           <h5 className="card-title">{title}</h5>
           <p className="card-text">{description}</p>
           <i>{price} €</i>
-          <div className="d-flex justify-content-between align-items-center">
+          <div className="d-flex justify-content-between align-items-center my-2">
             <div className="btn-group">
               <button
                 type="button"
@@ -86,24 +80,9 @@ export default connect(mapStateToProps)(function Product({
               </button>
             </div>
             <div className="d-flex align-items-center ">
-              <a href="#cart">
-                <Image
-                  className="card-img-top"
-                  src="/images/cart.png"
-                  alt={title}
-                  height={40}
-                  width={40}
-                />
-              </a>
-              <span
-                className={
-                  quantity > 0
-                    ? "mx-3 px-2 bg-warning" + " " + title
-                    : "mx-3 px-2" + " " + title
-                }
-              >
-                {quantity}
-              </span>
+              <Link href={`/produits/${id}`}>
+                <a className="nav-link">plus d'infos</a>
+              </Link>
             </div>
           </div>
         </div>

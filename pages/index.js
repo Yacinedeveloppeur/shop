@@ -1,11 +1,20 @@
 import Product from "../components/product";
-import productsData from "../data/products";
 import Layout from "../components/layout";
 import Header from "../components/header";
 import Footer from "../components/footer";
 import Cart from "../components/cart";
 
 import { connect } from "react-redux";
+import { getSortedProductsData } from "../lib/products";
+
+export async function getStaticProps() {
+  const allProductsData = getSortedProductsData();
+  return {
+    props: {
+      allProductsData,
+    },
+  };
+}
 
 //Connect props products to global state
 const mapStateToProps = (state) => {
@@ -15,17 +24,19 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(function Home() {
-  const displayProducts = productsData.map((product) => (
-    <Product
-      key={product.id}
-      image={product.image}
-      title={product.title}
-      description={product.description}
-      price={product.price}
-      id={product.id}
-    />
-  ));
+export default connect(mapStateToProps)(function Home({ allProductsData }) {
+  const displayProducts = allProductsData.map(
+    ({ id, title, description, price, image }) => (
+      <Product
+        key={id}
+        image={image}
+        title={title}
+        description={description}
+        price={price}
+        id={id}
+      />
+    )
+  );
 
   return (
     <Layout>

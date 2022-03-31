@@ -20,7 +20,6 @@ export default connect(mapStateToProps)(function Cart({
       value: { id, title, price },
     };
     dispatch(action);
-    document.getElementsByClassName(title)[0].innerHTML -= 1;
   }
 
   const displayProducts = products.map(

@@ -93,7 +93,7 @@ const productsData = [
     id: "14",
     title: "Pêche",
     image: "/images/fourth_categorie/peach.png",
-    description: "Pêche douce et juteuse",
+    description: "Pêche douce et juteuse.",
     category: "fourth_categorie",
     price: 4,
   },

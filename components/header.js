@@ -24,17 +24,31 @@ export default connect(mapStateToProps)(function Header({ titlePage, total }) {
           crossOrigin="anonymous"
           referrerpolicy="no-referrer"
         />
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+          crossOrigin="anonymous"
+        ></link>
         <meta
           name="description"
           content="Simple boutique développée avec redux et next js"
         />
       </Head>
       <header>
-        <nav className="navbar navbar-expand-md navbar-dark  bg-dark">
+        <nav className="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
           <div className="container-fluid">
             <Link href="/">
               <a className="nav-link text-light">Ma boutique</a>
             </Link>
+
+            <a href="#cart" className="btn btn-primary">
+              <div className="">
+                Pannier : {total} € HT{" "}
+                <i className="fa-solid fa-cart-shopping"></i>
+              </div>
+            </a>
+
             <button
               className="navbar-toggler"
               type="button"
@@ -52,33 +66,16 @@ export default connect(mapStateToProps)(function Header({ titlePage, total }) {
                   <Link href="/">
                     <a
                       className={
-                        router.pathname == "/" ? "nav-link active" : "nav-link"
+                        router.pathname == "/"
+                          ? "nav-link active mx-4"
+                          : "nav-link mx-4"
                       }
                     >
                       Accueil
                     </a>
                   </Link>
                 </li>
-                <li className="nav-item">
-                  <a href="#cart" className="nav-link">
-                    <div className="bg-primary px-4">
-                      Pannier : {total} € HT{" "}
-                      <i className="fa-solid fa-cart-shopping"></i>
-                    </div>
-                  </a>
-                </li>
               </ul>
-              <form className="d-flex">
-                <input
-                  className="form-control me-2"
-                  type="search"
-                  placeholder="Rechercher"
-                  aria-label="Rechercher"
-                />
-                <button className="btn btn-outline-light" type="submit">
-                  Recherche
-                </button>
-              </form>
             </div>
           </div>
         </nav>
